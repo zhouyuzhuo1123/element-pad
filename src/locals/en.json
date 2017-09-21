@@ -1,0 +1,12 @@
+{
+	"message":{
+			"hello": "hello World"
+	},
+	"title":"frontend",
+	"navMenu":[
+		{"name":"menu1","childMenu":["interface","interfacelist"]},
+		{"name":"menu2"},
+		{"name":"menu3"},
+		{"name":"language"}
+	]
+}
