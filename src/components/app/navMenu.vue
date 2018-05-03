@@ -10,6 +10,8 @@
     </el-submenu>
     <a href="#/language"><el-menu-item index="3"><i class="el-icon-setting"></i>{{$t("navMenu[3].name")}}</el-menu-item></a>
     <a href="#/upload"><el-menu-item index="3"><i class="el-icon-setting"></i>upload</el-menu-item></a>
+    <a href="#/pageList"><el-menu-item index="3"><i class="el-icon-setting"></i>pageList</el-menu-item></a>
+    <a href="#/test"><el-menu-item index="3"><i class="el-icon-setting"></i>test</el-menu-item></a>
   </el-menu>
   <div class="content">
     <router-view></router-view>

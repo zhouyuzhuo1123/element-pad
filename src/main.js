@@ -16,6 +16,8 @@ import en from './locals/en.json'
 import ja from './locals/ja.json'
 
 
+import test from './components/test.vue'
+
 var locales = {
   'zh-cn':{
   	...zh,
@@ -30,6 +32,8 @@ var locales = {
     ...jaLocale
   }
 }
+
+Vue.component('test',test)
 
 Vue.use(ElementUI)
 Vue.use(VueI18n)

@@ -16,11 +16,20 @@
       style="width: 100%">
       <el-table-column
         type="index"
-        width="80">
+        width="80"
+        v-if="false">
       </el-table-column>
+      <template v-for="item in test">
+        <el-table-column
+          :property="item.property"
+          :label="item.label"
+          v-if="true">
+        </el-table-column>
+      </template>
       <el-table-column
         property="date"
-        label="日期">
+        label="日期"
+        v-if="false">
       </el-table-column>
       <el-table-column
         property="id"
@@ -34,7 +43,7 @@
         property="des"
         label="描述">
       </el-table-column>
-      <el-table-column label="操作">
+      <!-- <el-table-column label="操作">
         <template scope="scope">
           <el-button
             size="small"
@@ -48,7 +57,7 @@
             type="danger"
             @click="handleWatch(scope.$index, scope.row)">查看</el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
     <div class="block">
       <el-pagination
@@ -85,7 +94,11 @@ export default {
       dialogVisible: false,
       selectId:null,
       tableData: [],
-      loading:true
+      loading:true,
+      test:[
+        {label:'zyz',property:"des"},
+        {label:'id',property:"id"},
+      ]
     }
   },
   async created(){
