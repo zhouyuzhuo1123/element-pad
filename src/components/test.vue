@@ -1,11 +1,7 @@
 <template>
-  <div class="hello">
+<div class="hello">
     <div class="header">
-        <h2>{{ msg }}</h2>
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/' }">{{$t("navMenu[0].name")}}</el-breadcrumb-item>
-          <el-breadcrumb-item>{{ msg }}</el-breadcrumb-item>
-        </el-breadcrumb>
+        <h2>{{enterData.title}}</h2>
     </div>
     <el-table
       ref="singleTable"
@@ -13,51 +9,20 @@
       v-loading="loading"
       element-loading-text="加载中"
       highlight-current-row
+      class=""
       style="width: 100%">
       <el-table-column
         type="index"
         width="80"
-        v-if="false">
+        v-if="enterData.option.index">
       </el-table-column>
-      <template v-for="item in test">
+      <template v-for="item in enterData.option.fields">
         <el-table-column
           :property="item.property"
           :label="item.label"
-          v-if="true">
+          v-if="item.isshow">
         </el-table-column>
       </template>
-      <el-table-column
-        property="date"
-        label="日期"
-        v-if="false">
-      </el-table-column>
-      <el-table-column
-        property="id"
-        label="接口ID">
-      </el-table-column>
-      <el-table-column
-        property="data"
-        label="数据">
-      </el-table-column>
-      <el-table-column
-        property="des"
-        label="描述">
-      </el-table-column>
-      <el-table-column label="操作">
-        <template scope="scope">
-          <el-button
-            size="small"
-            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button
-            size="small"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          <el-button
-            size="small"
-            type="danger"
-            @click="handleWatch(scope.$index, scope.row)">查看</el-button>
-        </template>
-      </el-table-column>
     </el-table>
     <div class="block">
       <el-pagination
@@ -67,26 +32,25 @@
         @current-change="handleCurrentChange">
       </el-pagination>
     </div>
-
     <el-dialog
       title="提示"
       :visible.sync="dialogVisible"
       size="tiny">
-      <span>接口地址：http://10.86.130.26:3003/api/apidetail?id={{selectId}}</span>
+      <span>接口地址：http:10.86.87.112:3003/api/apidetail?id={{selectId}}</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
-
-  </div>
+  
+  </div> 
 </template>
 
 <script>
-import fetch from '../../core/http'
+import fetch from '../core/http'
 
 export default {
-  name: 'interface',
+  name: 'test',
   data () {
     return {
       msg: this.$t("navMenu[0].childMenu[1]"),
@@ -95,10 +59,16 @@ export default {
       selectId:null,
       tableData: [],
       loading:true,
-      test:[
-        {label:'zyz',property:"des"},
-        {label:'id',property:"id"},
-      ]
+      tableParams:{
+        index:true,
+        fields:[
+          {label:'日期',property:"date",isshow:true},
+          {label:'接口ID',property:"id",isshow:false},
+          {label:'数据',property:"data",isshow:true},
+          {label:'描述',property:"des",isshow:true},
+        ],
+        
+      }      
     }
   },
   async created(){
@@ -111,6 +81,14 @@ export default {
       this.totalNum = content.count;
       this.loading = false;
 
+  },
+  props:{
+    enterData:{
+      type:Object,
+      default(){
+        return {};
+      },
+    }
   },
   methods:{
     handleSizeChange(val){
@@ -162,5 +140,12 @@ a {
 }
 .block{
   margin:10px;
+}
+
+table tr td{
+  border:1px solid #CCC;
+}
+.zyz{
+  font-size: 20px !important
 }
 </style>

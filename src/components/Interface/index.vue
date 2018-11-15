@@ -69,11 +69,11 @@
         if(this.form.id){
            let map = {};
            this.params.forEach((items)=>{
-              if(items.key && items.key) map[items.key] = items.value
+              if(items.key && items.key) map[items.key] = JSON.parse(items.value)
            })
            this.form.data = map;
-           const data = await fetch.post('/api/setapi',{body:this.form});
-           data.success &&　this.$message(data.msg || '保存成功');
+          // const data = await fetch.post('/api/setapi',{body:this.form});
+          // data.success &&　this.$message(data.msg || '保存成功');
         }else{
            this.$message('接口id还是要有的');
         }

@@ -54,8 +54,6 @@ async function fetch(url, options = {}) {
             token: window.localStorage.username
     }, options.headers)
     options.headers['Content-Type'] = 'application/json'
-
-    console.log(options)
     var resp = await window.fetch(url, options)
     var data = await parseResponse(resp)
     throwMsg(data)
